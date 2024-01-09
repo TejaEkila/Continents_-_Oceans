@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "396619792458",
+    "project_id": "continents-ocean",
+    "storage_bucket": "continents-ocean.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:396619792458:android:40cd93634dc67ba8fae6b3",
+        "android_client_info": {
+          "package_name": "com.example.con"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAW5U4YUqSQL_eQWAzv7C-Ni4lQJDCn5wU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
