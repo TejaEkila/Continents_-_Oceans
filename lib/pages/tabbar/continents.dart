@@ -5,7 +5,6 @@ import 'package:con/pages/country.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-
 class Continents extends StatefulWidget {
   const Continents({Key? key}) : super(key: key);
 
@@ -53,7 +52,6 @@ class _ContinentsState extends State<Continents> {
                         borderRadius: BorderRadius.circular(20),
                         child: Column(
                           children: [
-                            
                             GestureDetector(
                               onTap: () {
                                 Navigator.push(context, MaterialPageRoute(builder: (context) => Countery(countries: countries, continentData: continent)));
@@ -61,7 +59,6 @@ class _ContinentsState extends State<Continents> {
                               child: Container(
                                 height: 179,
                                 width: 300,
-                                
                                 decoration: BoxDecoration(
                                   color: Color.fromRGBO(133, 127, 247, 1),
                                   boxShadow: [
@@ -79,16 +76,16 @@ class _ContinentsState extends State<Continents> {
                                 ),
                               ),
                             ),
-                            
                             Container(
-                              height: 20, 
-                              color: Color.fromRGBO(133, 127, 247, 1), 
+                              height: 20,
+                              color: Color.fromRGBO(133, 127, 247, 1),
                               child: Center(
-                                child: Text(continent['coname'],
-                                style: TextStyle(color: Colors.white),
+                                child: Text(
+                                  continent['coname'],
+                                  style: TextStyle(color: Colors.white),
                                 ),
-                                ),
-                                )
+                              ),
+                            )
                           ],
                         ),
                       ),
@@ -96,10 +93,9 @@ class _ContinentsState extends State<Continents> {
                   },
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
                 )
-              : const Text("No data found"),
+              : CircularProgressIndicator(),
         ),
       ),
     );
   }
 }
-

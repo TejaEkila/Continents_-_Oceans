@@ -37,7 +37,7 @@ class _WelcomePageState extends State<WelcomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: Colors.white,
       body: SingleChildScrollView(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -75,6 +75,7 @@ class _WelcomePageState extends State<WelcomePage> {
                     ));
                   } else {
                     User? user = FirebaseAuth.instance.currentUser;
+                    
                     if (user != null) {
                       await FirebaseFirestore.instance.collection("users").doc(user.uid).set(
                           {"Firstname": firstname.text, "lastname": lastname.text, "age": age.text, "dataofbrith": dob.text, "profession": profession.text, "Bio": bio.text, "date": DateTime.now()},

@@ -1,5 +1,4 @@
 import 'package:con/firebase_options.dart';
-import 'package:con/pages/login.dart/gmail.dart';
 import 'package:con/pages/login.dart/loginpage.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';

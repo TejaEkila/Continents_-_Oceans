@@ -2,15 +2,12 @@
 
 import 'package:con/components/mybutton.dart';
 import 'package:con/components/mytextfield.dart';
-import 'package:con/pages/login.dart/gmail.dart';
 import 'package:con/pages/login.dart/optpage.dart';
-import 'package:con/pages/login.dart/signup/signuppage.dart';
+
+import 'package:country_picker/country_picker.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
-
-
-
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -21,23 +18,36 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   final mobileController = TextEditingController();
+
+  Country selectedCountry = Country(
+    phoneCode: "1",
+    countryCode: "US",
+    e164Sc: 0,
+    geographic: true,
+    level: 0,
+    name: "United States",
+    example: "United States",
+    displayName: "United States",
+    displayNameNoCountryCode: "US",
+    e164Key: "",
+  );
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: Colors.white,
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-
           const Gap(130),
           Icon(
-              Icons.map_rounded,
-              size: 130,
-              color: Color.fromRGBO(133, 127, 247, 1),
-            ),
+            Icons.map_rounded,
+            size: 130,
+            color: Colors.blueAccent,
+          ),
           const Text(
             "I N F O",
-            style: TextStyle(color: Colors.white, fontSize: 30, fontWeight: FontWeight.w600),
+            style: TextStyle(color: Colors.black, fontSize: 30, fontWeight: FontWeight.w600),
           ),
           const Gap(40),
           mytextfield(
@@ -45,74 +55,90 @@ class _LoginPageState extends State<LoginPage> {
             hinttext: "Mobile no",
             obscureText: false,
             keyboardtype: TextInputType.number,
-            //country code 
-            prefix: null,
+            // country code
+            prefix: Container(
+              padding: EdgeInsets.all(15),
+              child: InkWell(
+                onTap: () {
+                  showCountryPicker(
+                    countryListTheme: CountryListThemeData(
+                     
+                      bottomSheetHeight: 500,
+                    ),
+                    context: context,
+                    onSelect: ((value) {
+                      setState(() {
+                        selectedCountry = value;
+                      });
+                    }),
+                  );
+                },
+                child: Text(
+                  "${selectedCountry.flagEmoji}",
+                  style: TextStyle(color: Colors.blue, fontSize: 18, fontWeight: FontWeight.bold),
+                ),
+              ),
+            ),
           ),
+
           const Gap(10),
           Mybutton(
-              ontap: () {
-                print("working");
+            ontap: () {
+              print("working");
+
+              // Format the phone number with the country code
+              String phoneNumber = "+${selectedCountry.phoneCode}${mobileController.text}";
+
+              // Ensure that the phone number is in the correct format
+              if (phoneNumber.isNotEmpty) {
                 FirebaseAuth.instance.verifyPhoneNumber(
-                    verificationCompleted: (PhoneAuthCredential credential) {
-                       print("Auto-retrieve verification completed: $credential");
-                    },
-                    verificationFailed: (FirebaseAuthException ex) {
-                       print("Verification Failed: ${ex.message}");
-                    },
-                    codeSent: (String verification, int? resendtoken) {
-                      Navigator.pushReplacement(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => OptPage(
-                                    verificationid: verification,
-                                  )),
-                                  );
-                    },
-                    codeAutoRetrievalTimeout: (String verficationId) {},
-                    phoneNumber: mobileController.text);
-              },
-              buttontext: "send otp"),
+                  verificationCompleted: (PhoneAuthCredential credential) {
+                    print("Auto-retrieve verification completed: $credential");
+                  },
+                  verificationFailed: (FirebaseAuthException ex) {
+                    print("Verification Failed: ${ex.message}");
+                  },
+                  codeSent: (String verification, int? resendtoken) {
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => OptPage(
+                          verificationid: verification,
+                          
+                        ),
+                      ),
+                    );
+                  },
+                  codeAutoRetrievalTimeout: (String verificationId) {},
+                  
+                  phoneNumber: phoneNumber,
+                );
+              } else {
+                print("Invalid phone number format");
+              }
+            },
+            buttontext: "send otp",
+          ),
           const Gap(20),
           const Text(
             "Or",
-            style: TextStyle(color: Colors.white, fontSize: 20),
+            style: TextStyle(color: Colors.black, fontSize: 20),
           ),
           const Gap(20),
           GestureDetector(
             onTap: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context) => const GmailLink()));
+              //Navigator.push(context, MaterialPageRoute(builder: (context) => const GmailLink()));
             },
             child: SizedBox(
-              //color: Colors.blueAccent,
-              height: 55,
-              width: 55,
+              height: 50,
+              width: 50,
               child: Image.asset(
-                "assets/gmail.png",
+                "assets/google.png",
                 fit: BoxFit.cover,
               ),
             ),
           ),
-          const Gap(35),
-          Padding(
-            padding: const EdgeInsets.only(top: 200),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                const Text(
-                  "Don't have account,",
-                  style: TextStyle(fontSize: 17, color: Colors.white),
-                ),
-                TextButton(
-                    onPressed: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (contex) => const SignUp()));
-                    },
-                    child: const Text(
-                      "sign up",
-                      style: TextStyle(color: Color.fromRGBO(133, 127, 247, 1), fontSize: 17),
-                    ))
-              ],
-            ),
-          )
+          Gap(200)
         ],
       ),
     );

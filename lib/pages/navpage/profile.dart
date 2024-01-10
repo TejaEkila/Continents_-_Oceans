@@ -1,5 +1,4 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:con/pages/login.dart/gmail.dart';
 import 'package:con/pages/login.dart/loginpage.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -47,9 +46,9 @@ class _ProfilePageState extends State<ProfilePage> {
                   height: 840,
                   width: 430,
                   decoration: BoxDecoration(
-                    //color: Colors.blueAccent,
-                    
-                  ),
+                      //color: Colors.blueAccent,
+
+                      ),
                   child: Image.network(
                     "https://images.unsplash.com/photo-1590273466070-40c466b4432d?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8dHJlZXMlMjBpbiUyMGZvcmVzdHxlbnwwfHwwfHx8MA%3D%3D",
                     fit: BoxFit.cover,
@@ -97,38 +96,33 @@ class _ProfilePageState extends State<ProfilePage> {
                                 Text("Bio"),
                                 Gap(10),
                                 Text("${data['Bio']}", style: TextStyle(fontSize: 20, fontWeight: FontWeight.w400, color: Colors.white)),
-                               Gap(90),
-                               GestureDetector(
-                                onTap: ()async{
-                                  await FirebaseAuth.instance.signOut();
-              SharedPreferences pref =
-                  await SharedPreferences.getInstance();
-              await pref.setBool("statuslog", false);
-              Navigator.pushReplacement(
-                  context, MaterialPageRoute(builder: (context) => 
-                  LoginPage()));
-                                },
-                                 child: Container(
-                                                       height: 70,
-                                                       width: 300,
-                                                       
-                                                       decoration: BoxDecoration(
-                                                         color: Colors.black,
-                                                         borderRadius: BorderRadius.circular(20)
-                                                         ),
-                                                         child: Center(child: Text("Logout",style: TextStyle(color: Colors.white,fontWeight: FontWeight.w500,fontSize: 20),)),
-                                                     ),
-                               )
+                                Gap(90),
+                                GestureDetector(
+                                  onTap: () async {
+                                    await FirebaseAuth.instance.signOut();
+                                    SharedPreferences pref = await SharedPreferences.getInstance();
+                                    await pref.setBool("statuslog", false);
+                                    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => LoginPage()));
+                                  },
+                                  child: Container(
+                                    height: 70,
+                                    width: 300,
+                                    decoration: BoxDecoration(color: Colors.black, borderRadius: BorderRadius.circular(20)),
+                                    child: Center(
+                                        child: Text(
+                                      "Logout",
+                                      style: TextStyle(color: Colors.white, fontWeight: FontWeight.w500, fontSize: 20),
+                                    )),
+                                  ),
+                                )
                               ],
                             ),
                           ),
-                          
 
                           //Text("ty${data['lastname']}"),
                         ],
                       ),
                     ),
-                   
                   ],
                 )
               ],

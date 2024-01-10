@@ -26,18 +26,18 @@ class mytextfield extends StatelessWidget {
       child: TextField(
         
         controller: Controller,
-        style: TextStyle(color: Colors.white),
+        style: TextStyle(color: Colors.black),
         obscureText: obscureText,
         decoration: InputDecoration(
-          prefix: prefix,
+          prefixIcon: prefix,
             enabledBorder: OutlineInputBorder(
               borderSide: BorderSide(color: Color.fromRGBO(133, 127, 247, 1)),
             ),
-            focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.white)),
+            focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.blue)),
             fillColor: Colors.white10,
             filled: true,
             hintText: hinttext,
-            hintStyle: TextStyle(color: Colors.white)),
+            hintStyle: TextStyle(color: Color.fromARGB(255, 122, 122, 122))),
       ),
     );
   }
