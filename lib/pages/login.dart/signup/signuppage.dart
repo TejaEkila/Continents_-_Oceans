@@ -91,11 +91,11 @@ class _SignUpState extends State<SignUp> {
               ),
             ),
             const Gap(20),
-            mytextfield(Controller: gmailController, hinttext: "Email", obscureText: false, keyboardtype: TextInputType.emailAddress),
+            mytextfield(Controller: gmailController, hinttext: "Email", obscureText: false, keyboardtype: TextInputType.emailAddress, prefix: null,),
             const Gap(10),
-            mytextfield(Controller: passwordController, hinttext: "Password", obscureText: true, keyboardtype: TextInputType.text),
+            mytextfield(Controller: passwordController, hinttext: "Password", obscureText: true, keyboardtype: TextInputType.text, prefix: null,),
             const Gap(10),
-            mytextfield(Controller: confirmpasswordController, hinttext: "Confirm Password", obscureText: true, keyboardtype: TextInputType.text),
+            mytextfield(Controller: confirmpasswordController, hinttext: "Confirm Password", obscureText: true, keyboardtype: TextInputType.text, prefix: null,),
             const Gap(20),
             Mybutton(
               ontap: () {
@@ -108,10 +108,17 @@ class _SignUpState extends State<SignUp> {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text("have account?",style: TextStyle(color: Colors.white),),
+                Text(
+                  "have account?",
+                  style: TextStyle(color: Colors.white),
+                ),
                 TextButton(
                     onPressed: () {
                       Navigator.pop(context);
+                      
+                      setState(() {
+                        
+                      });
                     },
                     child: Text('signin'))
               ],

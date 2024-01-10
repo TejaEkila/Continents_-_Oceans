@@ -7,6 +7,7 @@ class mytextfield extends StatelessWidget {
   final String hinttext;
   final bool obscureText;
   final keyboardtype;
+  final prefix;
 
   const mytextfield({
     super.key,
@@ -14,6 +15,7 @@ class mytextfield extends StatelessWidget {
     required this.hinttext,
     required this.obscureText,
     required this.keyboardtype,
+    required this.prefix,
     //required Null Function(dynamic value) validator,
   });
 
@@ -22,10 +24,12 @@ class mytextfield extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 35),
       child: TextField(
+        
         controller: Controller,
         style: TextStyle(color: Colors.white),
         obscureText: obscureText,
         decoration: InputDecoration(
+          prefix: prefix,
             enabledBorder: OutlineInputBorder(
               borderSide: BorderSide(color: Color.fromRGBO(133, 127, 247, 1)),
             ),

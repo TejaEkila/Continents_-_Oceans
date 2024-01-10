@@ -4,7 +4,8 @@ import 'dart:math';
 
 import 'package:con/components/mybutton.dart';
 import 'package:con/components/mytextfield.dart';
-import 'package:con/pages/navpage/homepage.dart';
+
+import 'package:con/pages/welcomepage.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
@@ -28,7 +29,7 @@ class _OptPageState extends State<OptPage> {
           Controller: otpController,
           hinttext: "opt",
           obscureText: false,
-          keyboardtype: TextInputType.phone,
+          keyboardtype: TextInputType.phone, prefix: null,
         ),
         const Gap(30),
         Mybutton(
@@ -36,7 +37,7 @@ class _OptPageState extends State<OptPage> {
               try {
                 PhoneAuthCredential credential = await PhoneAuthProvider.credential(verificationId: widget.verificationid, smsCode: otpController.text);
                 FirebaseAuth.instance.signInWithCredential(credential).then((value) {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => const HomePage()));
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => WelcomePage()));
                 });
               } catch (ex) {
                 log(ex.toString() as num);

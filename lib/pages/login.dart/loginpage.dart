@@ -24,13 +24,19 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.amber,
+      backgroundColor: Colors.black,
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          const Gap(200),
+
+          const Gap(130),
+          Icon(
+              Icons.map_rounded,
+              size: 130,
+              color: Color.fromRGBO(133, 127, 247, 1),
+            ),
           const Text(
-            "NAME",
+            "I N F O",
             style: TextStyle(color: Colors.white, fontSize: 30, fontWeight: FontWeight.w600),
           ),
           const Gap(40),
@@ -39,21 +45,28 @@ class _LoginPageState extends State<LoginPage> {
             hinttext: "Mobile no",
             obscureText: false,
             keyboardtype: TextInputType.number,
+            //country code 
+            prefix: null,
           ),
           const Gap(10),
           Mybutton(
               ontap: () {
                 print("working");
                 FirebaseAuth.instance.verifyPhoneNumber(
-                    verificationCompleted: (PhoneAuthCredential credential) {},
-                    verificationFailed: (FirebaseAuthException ex) {},
+                    verificationCompleted: (PhoneAuthCredential credential) {
+                       print("Auto-retrieve verification completed: $credential");
+                    },
+                    verificationFailed: (FirebaseAuthException ex) {
+                       print("Verification Failed: ${ex.message}");
+                    },
                     codeSent: (String verification, int? resendtoken) {
-                      Navigator.push(
+                      Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(
                               builder: (context) => OptPage(
                                     verificationid: verification,
-                                  )));
+                                  )),
+                                  );
                     },
                     codeAutoRetrievalTimeout: (String verficationId) {},
                     phoneNumber: mobileController.text);
@@ -65,40 +78,23 @@ class _LoginPageState extends State<LoginPage> {
             style: TextStyle(color: Colors.white, fontSize: 20),
           ),
           const Gap(20),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              GestureDetector(
-                onTap: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => const GmailLink()));
-                },
-                child: SizedBox(
-                  //color: Colors.blueAccent,
-                  height: 55,
-                  width: 55,
-                  child: Image.asset(
-                    "assets/gmail.png",
-                    fit: BoxFit.cover,
-                  ),
-                ),
+          GestureDetector(
+            onTap: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) => const GmailLink()));
+            },
+            child: SizedBox(
+              //color: Colors.blueAccent,
+              height: 55,
+              width: 55,
+              child: Image.asset(
+                "assets/gmail.png",
+                fit: BoxFit.cover,
               ),
-              const Gap(35),
-              GestureDetector(
-                onTap: () {},
-                child: SizedBox(
-                  //color: Colors.blueAccent,
-                  height: 50,
-                  width: 50,
-                  child: Image.asset(
-                    "assets/google.png",
-                    fit: BoxFit.cover,
-                  ),
-                ),
-              ),
-            ],
+            ),
           ),
+          const Gap(35),
           Padding(
-            padding: const EdgeInsets.only(top: 250),
+            padding: const EdgeInsets.only(top: 200),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [

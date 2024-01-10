@@ -23,9 +23,9 @@ class _HomePageState extends State<HomePage> {
           backgroundColor: const Color.fromARGB(255, 0, 0, 0),
           //.leading: const Icon(Icons.camera),
           title: const Text(
-            'name',
+            'I N F O',
             style: TextStyle(
-              fontWeight: FontWeight.w600,
+              fontWeight: FontWeight.w700,
               fontSize: 23,
               color: Colors.white
             ),

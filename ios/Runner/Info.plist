@@ -39,6 +39,16 @@
   <string>http</string>
   <string>https</string>
 </array>
+<key>CFBundleURLTypes</key>
+<array>
+    <dict>
+        <key>CFBundleURLSchemes</key>
+        <array>
+            <!-- Replace 'app-1-396619792458-ios-8e263fcc74f30497fae6b3' with your own custom URL scheme -->
+            <string>app-1-396619792458-ios-8e263fcc74f30497fae6b3</string>
+        </array>
+    </dict>
+</array>
 
 	<key>UISupportedInterfaceOrientations~ipad</key>
 	<array>

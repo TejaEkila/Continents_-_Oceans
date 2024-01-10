@@ -30,16 +30,16 @@ class _GmailLinkState extends State<GmailLink> {
   final passwordController = TextEditingController();
 
   void checkUser() async {
-  SharedPreferences pref = await SharedPreferences.getInstance();
-  bool? statuslog = pref.getBool("statuslog");
+    SharedPreferences pref = await SharedPreferences.getInstance();
+    bool? statuslog = pref.getBool("statuslog");
 
-  if (statuslog == true) {
-    // User is logged in, navigate to the home page
-    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => BottomBar()));
-  } else {
-    // User is not logged in, stay on the sign-in page
+    if (statuslog == true) {
+      // User is logged in, navigate to the home page
+      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => BottomBar()));
+    } else {
+      // User is not logged in, stay on the sign-in page
+    }
   }
-}
 
   @override
   void initState() {
@@ -48,27 +48,26 @@ class _GmailLinkState extends State<GmailLink> {
   }
 
   SignIn(String gmail, String password) async {
-  if (gmailController.text.isEmpty || passwordController.text.isEmpty) {
-    // Handle empty fields
-    return;
-  }
+    if (gmailController.text.isEmpty || passwordController.text.isEmpty) {
+      // Handle empty fields
+      return;
+    }
 
-  try {
-    await FirebaseAuth.instance.signInWithEmailAndPassword(email: gmail, password: password);
-    SharedPreferences pref = await SharedPreferences.getInstance();
-    await pref.setBool("statuslog", true); // Set the login status to true
-    gmailController.clear();
-    passwordController.clear();
-    checkUser();
-  } on FirebaseAuthException catch (ex) {
-    print("Firebase Auth Exception: ${ex.message}");
-    // Handle FirebaseAuthException (show a SnackBar, AlertDialog, or other appropriate UI)
-  } catch (ex) {
-    print("Unexpected Error: $ex");
-    // Handle other unexpected errors
+    try {
+      await FirebaseAuth.instance.signInWithEmailAndPassword(email: gmail, password: password);
+      SharedPreferences pref = await SharedPreferences.getInstance();
+      await pref.setBool("statuslog", true); // Set the login status to true
+      gmailController.clear();
+      passwordController.clear();
+      checkUser();
+    } on FirebaseAuthException catch (ex) {
+      print("Firebase Auth Exception: ${ex.message}");
+      // Handle FirebaseAuthException (show a SnackBar, AlertDialog, or other appropriate UI)
+    } catch (ex) {
+      print("Unexpected Error: $ex");
+      // Handle other unexpected errors
+    }
   }
-}
-
 
   @override
   Widget build(BuildContext context) {
@@ -85,13 +84,13 @@ class _GmailLinkState extends State<GmailLink> {
             ),
             Gap(10),
             Text(
-              "INFO",
+              "I N F O",
               style: TextStyle(color: Colors.white, fontSize: 25, fontWeight: FontWeight.w700),
             ),
             Gap(30),
-            mytextfield(Controller: gmailController, hinttext: "Gmail", obscureText: false, keyboardtype: TextInputType.emailAddress),
+            mytextfield(Controller: gmailController, hinttext: "Gmail", obscureText: false, keyboardtype: TextInputType.emailAddress, prefix: null,),
             Gap(10),
-            mytextfield(Controller: passwordController, hinttext: "Password", obscureText: true, keyboardtype: TextInputType.text),
+            mytextfield(Controller: passwordController, hinttext: "Password", obscureText: true, keyboardtype: TextInputType.text, prefix: null,),
             Gap(20),
             Mybutton(
               ontap: () {
@@ -103,15 +102,31 @@ class _GmailLinkState extends State<GmailLink> {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text("Don't have account?",style: TextStyle(color: Colors.white),),
+                Text(
+                  "Don't have account?",
+                  style: TextStyle(color: Colors.white),
+                ),
                 TextButton(
                   onPressed: () {
+                    gmailController.clear();
+                    passwordController.clear();
                     Navigator.push(context, MaterialPageRoute(builder: (context) => SignUp()));
                   },
                   child: Text("Create one"),
                 ),
+                
               ],
             ),
+            Gap(50),
+                IconButton(
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                    icon: Icon(
+                      Icons.arrow_back_ios,
+                      color: Colors.white,
+                      size: 30,
+                    ))
           ],
         ),
       ),

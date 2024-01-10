@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:con/pages/login.dart/gmail.dart';
+import 'package:con/pages/login.dart/loginpage.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
@@ -105,7 +106,7 @@ class _ProfilePageState extends State<ProfilePage> {
               await pref.setBool("statuslog", false);
               Navigator.pushReplacement(
                   context, MaterialPageRoute(builder: (context) => 
-                  GmailLink()));
+                  LoginPage()));
                                 },
                                  child: Container(
                                                        height: 70,
