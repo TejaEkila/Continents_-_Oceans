@@ -35,10 +35,10 @@ class _BottomBarState extends State<BottomBar> {
     
       body: pages[currentIndex],
       bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: Color.fromARGB(255, 0, 0, 0),
+        backgroundColor: Colors.blueAccent,
         elevation: 0,
-        unselectedItemColor: const Color.fromRGBO(133, 127, 247, 1),
-        selectedItemColor: const Color.fromARGB(255, 255, 255, 255),
+        unselectedItemColor: Colors.white,
+        selectedItemColor: Colors.black,
         currentIndex: currentIndex,
         onTap: OnTabTapped,
         items: const [

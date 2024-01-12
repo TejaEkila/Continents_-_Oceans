@@ -10,13 +10,15 @@ import 'package:gap/gap.dart';
 import 'package:lottie/lottie.dart';
 
 class WelcomePage extends StatefulWidget {
-  WelcomePage({super.key});
+  String phoneID;
+  WelcomePage({super.key, required this.phoneID});
 
   @override
   State<WelcomePage> createState() => _WelcomePageState();
 }
 
 class _WelcomePageState extends State<WelcomePage> {
+  
   final firstname = TextEditingController();
   final lastname = TextEditingController();
   final age = TextEditingController();
@@ -47,24 +49,64 @@ class _WelcomePageState extends State<WelcomePage> {
               height: 200,
               width: 280,
               //color: Colors.amber,
-              child: Center(child: LottieBuilder.asset("assets/write.json",fit: BoxFit.cover,)),
+              child: Center(
+                  child: LottieBuilder.asset(
+                "assets/write.json",
+                fit: BoxFit.cover,
+              )),
             ),
             const Text(
               "Enter your detials!",
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600,color: Colors.white),
+              style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600, color: Colors.white),
             ),
             const Gap(20),
-            mytextfield(Controller: firstname, hinttext: "First Name", obscureText: false, keyboardtype: TextInputType.text, prefix: null,),
+            mytextfield(
+              Controller: firstname,
+              hinttext: "First Name",
+              obscureText: false,
+              keyboardtype: TextInputType.text,
+              prefix: null,
+            ),
             const Gap(10),
-            mytextfield(Controller: lastname, hinttext: "Last Name", obscureText: false, keyboardtype: TextInputType.text, prefix: null,),
+            mytextfield(
+              Controller: lastname,
+              hinttext: "Last Name",
+              obscureText: false,
+              keyboardtype: TextInputType.text,
+              prefix: null,
+            ),
             const Gap(10),
-            mytextfield(Controller: age, hinttext: "Age", obscureText: false, keyboardtype: TextInputType.text,prefix: null,),
+            mytextfield(
+              Controller: age,
+              hinttext: "Age",
+              obscureText: false,
+              keyboardtype: TextInputType.text,
+              prefix: null,
+            ),
             const Gap(10),
-            mytextfield(Controller: dob, hinttext: "Date of Brith", obscureText: false, keyboardtype: TextInputType.text,prefix: null,),
+            mytextfield(
+              Controller: dob,
+              hinttext: "Date of Brith",
+              obscureText: false,
+              keyboardtype: TextInputType.text,
+              prefix: null,
+            ),
             const Gap(10),
-            mytextfield(Controller: profession, hinttext: "eg:Student", obscureText: false, keyboardtype: TextInputType.text,prefix: null,),
+            mytextfield(
+              Controller: profession,
+              hinttext: "eg:Student",
+              obscureText: false,
+              keyboardtype: TextInputType.text,
+              prefix: null,
+            ),
             const Gap(20),
-            mytextfield(Controller: bio, hinttext: "bio", obscureText: false, keyboardtype: TextInputType.text,prefix: null,),
+            mytextfield(
+              Controller: bio,
+              hinttext: "bio",
+              obscureText: false,
+              keyboardtype: TextInputType.text,
+              prefix: null,
+            ),
             const Gap(20),
             Mybutton(
                 ontap: () async {
@@ -75,10 +117,10 @@ class _WelcomePageState extends State<WelcomePage> {
                     ));
                   } else {
                     User? user = FirebaseAuth.instance.currentUser;
-                    
+
                     if (user != null) {
                       await FirebaseFirestore.instance.collection("users").doc(user.uid).set(
-                          {"Firstname": firstname.text, "lastname": lastname.text, "age": age.text, "dataofbrith": dob.text, "profession": profession.text, "Bio": bio.text, "date": DateTime.now()},
+                          {"Firstname": firstname.text, "lastname": lastname.text, "age": age.text, "dataofbrith": dob.text, "profession": profession.text, "Bio": bio.text, "phonenumber":widget.phoneID,"date": DateTime.now()},
                           SetOptions(merge: true));
                       Navigator.pushReplacement(
                         context,

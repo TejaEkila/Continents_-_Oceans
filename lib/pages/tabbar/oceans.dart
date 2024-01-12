@@ -40,7 +40,7 @@ class _OcensState extends State<Ocens> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor: Color.fromARGB(255, 0, 0, 0),
+        backgroundColor: Colors.white,
         body: Container(
           child: oceansData.isNotEmpty
               ? ListView.builder(

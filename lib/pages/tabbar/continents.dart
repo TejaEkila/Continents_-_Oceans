@@ -38,7 +38,7 @@ class _ContinentsState extends State<Continents> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor: Color.fromARGB(255, 0, 0, 0),
+        backgroundColor: Colors.white,
         body: Container(
           child: continentsData.isNotEmpty
               ? GridView.builder(
@@ -60,7 +60,7 @@ class _ContinentsState extends State<Continents> {
                                 height: 179,
                                 width: 300,
                                 decoration: BoxDecoration(
-                                  color: Color.fromRGBO(133, 127, 247, 1),
+                                  color: Colors.blue,
                                   boxShadow: [
                                     BoxShadow(
                                       color: Color.fromARGB(255, 137, 137, 137).withOpacity(0.5),
@@ -78,7 +78,7 @@ class _ContinentsState extends State<Continents> {
                             ),
                             Container(
                               height: 20,
-                              color: Color.fromRGBO(133, 127, 247, 1),
+                              color: Colors.blue,
                               child: Center(
                                 child: Text(
                                   continent['coname'],

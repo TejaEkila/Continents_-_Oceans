@@ -23,20 +23,20 @@ class _CounteryState extends State<Countery> {
       appBar: AppBar(
         title: Text(
           widget.continentData['coname'],
-          style: const TextStyle(color: Colors.white, fontSize: 25, fontWeight: FontWeight.w500),
+          style: const TextStyle(color: Colors.black, fontSize: 25, fontWeight: FontWeight.w500),
         ),
-        backgroundColor: const Color.fromARGB(255, 0, 0, 0),
+        backgroundColor: Colors.white,
         leading: IconButton(
             onPressed: () {
               Navigator.pop(context);
             },
             icon: const Icon(
               Icons.arrow_back_ios,
-              color: Colors.white,
+              color: Colors.black,
             )),
       ),
       body: Container(
-        color: const Color.fromARGB(255, 0, 0, 0),
+        color: Colors.white,
         child: widget.countries.isNotEmpty
             ? GridView.builder(
                 itemCount: widget.countries.length,
@@ -64,7 +64,7 @@ class _CounteryState extends State<Countery> {
                             child: Container(
                               height: 179,
                               width: 300,
-                              color: const Color.fromRGBO(133, 127, 247, 1),
+                              color: Colors.blue,
                               child: Image.network(
                                 country['lin'],
                                 fit: BoxFit.cover,
@@ -73,7 +73,7 @@ class _CounteryState extends State<Countery> {
                           ),
                           Container(
                             height: 20,
-                            color: const Color.fromRGBO(133, 127, 247, 1),
+                            color: Colors.blue,
                             child: Center(
                               child: Text(
                                 country['name'],
@@ -119,7 +119,7 @@ class _ConState extends State<Con> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: Colors.white,
       body: Column(
         children: [
           ClipRRect(
@@ -144,13 +144,13 @@ class _ConState extends State<Con> {
                   },
                   icon: const Icon(
                     Icons.arrow_back_ios,
-                    color: Colors.white,
+                    color: Colors.black,
                     size: 25,
                   )),
               const Gap(40),
               Text(
                 widget.selectedCountry['name'],
-                style: const TextStyle(fontSize: 30, color: Colors.white),
+                style: const TextStyle(fontSize: 30, color: Colors.black),
               ),
             ],
           ),
@@ -256,7 +256,7 @@ class _ConState extends State<Con> {
                         child: Container(
                           height: 70,
                           width: 300,
-                          decoration: BoxDecoration(color: const Color.fromARGB(255, 34, 34, 33), borderRadius: BorderRadius.circular(20)),
+                          decoration: BoxDecoration(color: Colors.blue, borderRadius: BorderRadius.circular(20)),
                           child: const Center(
                               child: Text(
                             "Know more",

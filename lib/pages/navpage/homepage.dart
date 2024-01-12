@@ -18,25 +18,26 @@ class _HomePageState extends State<HomePage> {
       initialIndex: 0,
       
       child: Scaffold(
-        backgroundColor: const Color.fromARGB(255, 0, 0, 0),
+        backgroundColor:  Colors.white,
         appBar: AppBar(
-          backgroundColor: const Color.fromARGB(255, 0, 0, 0),
+          automaticallyImplyLeading: false,
+          backgroundColor: Colors.white,
           //.leading: const Icon(Icons.camera),
           title: const Text(
             'I N F O',
             style: TextStyle(
               fontWeight: FontWeight.w700,
               fontSize: 23,
-              color: Colors.white
+              color: Colors.black
             ),
           ),
           bottom: const TabBar(
             
-            indicatorColor: Color.fromRGBO(133, 127, 247, 1), 
+            indicatorColor: Colors.blue, 
             indicatorSize: TabBarIndicatorSize.tab, 
             indicatorWeight:3, 
             unselectedLabelColor: Color.fromARGB(255, 104, 133, 147),
-            labelColor: Colors.white,
+            labelColor: Colors.black,
             labelStyle: TextStyle(fontSize: 20,fontWeight: FontWeight.w500), tabs: [
             Tab(
               text: 'Continets',
